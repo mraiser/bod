@@ -8,8 +8,6 @@ use candle_nn::VarBuilder;
 use candle_core::DType;
 use candle_core::Tensor;
 use candle_core::Module;
-use candle_transformers::object_detection::Bbox;
-use candle_transformers::object_detection::KeyPoint;
 use candle_core::IndexOp;
 use ndata::dataarray::DataArray;
 
@@ -17,7 +15,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     let img = &args[1];
     
-    let q = ndata::init();
+    let _q = ndata::init();
   
     let device = Device::new_cuda(0).unwrap(); 
     let model = "/home/mraiser/.cache/huggingface/hub/models--lmz--candle-yolo-v8/snapshots/be388c6fab95ae3035a039070e1b883b9c5a1325/yolov8s.safetensors";
@@ -37,7 +35,7 @@ fn main() {
     };
 
     //let image_name = "/usb1/train/bitsie_tulloch/a5428471_b-628835397.jpg.png";
-    let mut image_name = std::path::PathBuf::from(img);
+    let image_name = std::path::PathBuf::from(img);
     let original_image = image::io::Reader::open(&image_name).unwrap().decode().map_err(candle_core::Error::wrap).unwrap();
     let (initial_h, initial_w) = (original_image.height(), original_image.width());
     let (width, height) = {

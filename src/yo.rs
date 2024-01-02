@@ -1,4 +1,3 @@
-use ndata::dataobject::*;
 use candle_core::utils::{cuda_is_available, metal_is_available};
 use candle_core::{DType, IndexOp, Result, Tensor, D, Device};
 use candle_nn::{batch_norm, conv2d, conv2d_no_bias, Conv2d, Conv2dConfig, Module, VarBuilder};
@@ -44,49 +43,6 @@ const KP_CONNECTIONS: [(usize, usize); 16] = [
 ];
 // Model architecture from https://github.com/ultralytics/ultralytics/issues/189
 // https://github.com/tinygrad/tinygrad/blob/master/examples/yolov8.py
-pub fn execute(_o: DataObject) -> DataObject {
-let ax = test3();
-let mut o = DataObject::new();
-o.put_object("a", ax);
-o
-}
-
-pub fn test3() -> DataObject {
-let mut args = Args::parse(); 
-args.images.push("/usb1/train/bitsie_tulloch/a5428471_b-628835397.jpg.png".to_string());
-//args.tracing = true;
-let x = submit(args);
-let s = format!("{:?}", x);
-let mut o = DataObject::new();
-o.put_string("xxx", &s);
-o
-} 
-
-pub fn submit(args:Args) -> anyhow::Result<()> {
-    use tracing_chrome::ChromeLayerBuilder;
-    use tracing_subscriber::prelude::*;
-
-
-    let _guard = if args.tracing {
-        let (chrome_layer, guard) = ChromeLayerBuilder::new().build();
-        tracing_subscriber::registry().with(chrome_layer).init();
-        Some(guard)
-    } else {
-        None
-    };
-
-    match args.task {
-        YoloTask::Detect => {
-          let x = run::<YoloV8>(args)?;
-          println!("DETECT: {:?}", x);
-        },
-        YoloTask::Pose => {
-          let y = run::<YoloV8Pose>(args)?;
-          println!("POSE: {:?}", y);
-        },
-    }
-    Ok(())
-}
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
