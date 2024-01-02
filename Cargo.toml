@@ -1,0 +1,22 @@
+[package]
+name = "bod"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+candle-core = { version = "0.3.2", features = ["cuda", "cudnn"] }
+candle-nn = { version = "0.3.2", features = ["cuda"] }
+candle-transformers = { version = "0.3.2", features = ["cuda"] }
+clap = { version = "4.2.4", features = ["derive"] }
+tracing = "0.1.40"
+tracing-subscriber = "0.3.18"
+tracing-chrome = "0.7.1"
+hf-hub = "0.3.2"
+rusttype = "0.9.3"
+image = "0.24.7"
+ndata = { version = "0.3.7", features = ["serde_support"] }
+imageproc = "0.23.0"
+anyhow = "1.0.75"
+
