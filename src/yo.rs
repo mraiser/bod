@@ -305,7 +305,7 @@ println!("----------------------------------------------------------------------
     let w_ratio = initial_w as f32 / w as f32;
     let h_ratio = initial_h as f32 / h as f32;
     let mut img = img.to_rgb8();
-    let font = Vec::from(include_bytes!("/home/mraiser/Documents/rust/candle/candle-examples/examples/yolo-v8/roboto-mono-stripped.ttf") as &[u8]);
+    let font = Vec::from(include_bytes!("roboto-mono-stripped.ttf") as &[u8]);
     let font = rusttype::Font::try_from_vec(font);
     for (class_index, bboxes_for_class) in bboxes.iter().enumerate() {
         for b in bboxes_for_class.iter() {
