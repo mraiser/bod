@@ -83,6 +83,7 @@ pub struct Args {
 }
 
 impl Args {
+    #[allow(dead_code)]
     fn model(&self) -> anyhow::Result<std::path::PathBuf> {
         let path = match &self.model {
             Some(model) => std::path::PathBuf::from(model),
@@ -473,6 +474,7 @@ impl Task for YoloV8Pose {
     }
 }
 
+#[allow(dead_code)]
 pub fn run<T: Task>(args: Args) -> anyhow::Result<()> {
     let device = device(args.cpu)?;
     // Create the model and load the weights from the file.

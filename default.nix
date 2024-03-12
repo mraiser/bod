@@ -1,18 +1,15 @@
 with (import <nixpkgs> {});
 let
   LLP = with pkgs; [
-    gcc11
+    cargo
     openssl
     pkg-config
     cudatoolkit
     cudaPackages.cudnn
+    linuxPackages.nvidia_x11
+    dlib
     blas 
     lapack
-    linuxPackages.nvidia_x11
-    cmake
-    cargo
-    ffmpeg
-    sox
   ];
   LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath LLP;
 in  
@@ -27,5 +24,6 @@ stdenv.mkDerivation {
     export CUDA_ROOT=${cudatoolkit.out}
     export CUDNN_LIB=${cudaPackages.cudnn}
     export CANDLE_NVCC_CCBIN=${gcc11}/bin
+    export PATH=${gcc11}/bin:$PATH
   '';
 }

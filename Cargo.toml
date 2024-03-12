@@ -6,17 +6,18 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-candle-core = { version = "0.3.2", features = ["cuda", "cudnn"] }
-candle-nn = { version = "0.3.2", features = ["cuda"] }
-candle-transformers = { version = "0.3.2", features = ["cuda"] }
+candle-core = { version = "0.3.3", features = ["cuda", "cudnn"] }
+candle-nn = { version = "0.3.3", features = ["cuda"] }
+candle-transformers = { version = "0.3.3", features = ["cuda"] }
 clap = { version = "4.2.4", features = ["derive"] }
-tracing = "0.1.40"
-tracing-subscriber = "0.3.18"
+tracing = "0.1.37"
+tracing-subscriber = "0.3.7"
 tracing-chrome = "0.7.1"
-hf-hub = "0.3.2"
-rusttype = "0.9.3"
-image = "0.24.7"
-ndata = { version = "0.3.7", features = ["serde_support"] }
-imageproc = "0.23.0"
-anyhow = "1.0.75"
+hf-hub = "0.3.0"
+rusttype = { version = "0.9", default-features = false }
+image = { version = "0.24.7", default-features = false, features = ["jpeg", "png"] }
+ndata = { version = "0.3.10", features = ["serde_support"] }
+imageproc = { version = "0.23.0", default-features = false }
+anyhow = { version = "1", features = ["backtrace"] }
+dlib-face-recognition = { version = "0.3.2" }
 
